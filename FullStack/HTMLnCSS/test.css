@@ -1,0 +1,68 @@
+.body{
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+}
+.nav-main{
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 40px;
+}
+
+
+.nav-buttons
+{
+  align-self: flex-start;
+  text-align: left;
+  width: auto;
+  align-items: stretch;
+}
+
+.nav-buttons button
+{
+  background-color: indigo;
+  border-radius: 20px;
+  color: white;
+  height: 40px;
+  border: none;
+  font-size: 1em;
+
+
+}
+
+#section1 {
+  color: green;
+
+}
+.nav{
+  text-align: center;
+/*  top: 12.5%;
+  bottom: 12.5%;
+*/
+}
+
+
+h1 {
+  color: yellow;
+  font-family: sans-serif;
+}
+
+.h1red{
+  color: red;
+  font-family: fantasy;
+}
+
+.h1red {
+  color: blue;
+}
+
+.h1firstsection {
+  background-color: grey;
+}
+
+.h1firstsection p{
+  color: red;
+}
+
+.h1firstsection h1{
+  color: cyan;
+}

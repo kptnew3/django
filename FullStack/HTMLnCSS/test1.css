@@ -1,0 +1,11 @@
+/* #parentdivid p{
+  color: green;
+} */
+
+/* #parentdivid > p {
+  color: blue;
+} */
+
+#parentdivid > article{
+  color: red;
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/ecommerce/index/" enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        {% comment %} First name:<br>
+        <input type="text" name="firstname" value="{{ form_submitted }}"><br>
+        Last name:<br>
+        <input type="text" name="lastname">
+        <input type="email" name="email">
+        <input type="file" name="file">
+        <input type="checkbox" name="gender">
+        <input type="submit" value="Submit"> {% endcomment %}
+        
+        {{form}}
+
+    </form>
+
+    <h1> {{ form_submitted }}</h1>
+
+    {% if form_submitted %}
+        <p>Form Submitted Successfully.</p>
+    {% endif %}
+</body>
+</html>

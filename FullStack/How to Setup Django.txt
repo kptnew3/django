@@ -1,0 +1,133 @@
+--Run below command for setting up virtual environment
+
+conda create --name myDjangoEnv python=3.5
+
+
+--activate the environment
+activate myDjangoEnv
+
+--now we would be in that particular environment and everything would happen for that environment only
+
+--installing django
+conda install django=1.10.5
+
+--Create first project using django-admin 
+
+django-admin startproject DjangoFirstProject
+
+--change directory to the DjangoFirstProject 
+
+cd DjangoFirstProject
+
+--Launch the web server 
+
+python manage.py runserver
+
+
+--Start the django app. It would create new folder DjangoFirstApp in parallel to DjangoFirstProject
+
+python manage.py startapp DjangoFirstApp
+
+--open the settings.py file on DjangoFirstProject folder and add the below entry to the installed_apps section
+
+'DjangoFirstApp'
+
+--Create sample hello world in django
+open the views.py on DjangoFirstApp folder and put below code
+
+from django.http import HttpResponse
+
+# Create your views here.
+def index(request):
+    return HttpResponse("Hello World from Gagan")
+	
+
+--after this map this view to urls.py file in project folder.
+
+-- Add below code under urlpatterns list
+url(r'^$',views.index,name='index'),
+
+--For each application we have to add urls.py file manually to that application
+--the include function allows to look  for a match with regular expression and link back to our application's own urls.py file. 
+--So we would add the following to the project’s urls.py
+
+from django.conf.urls import include
+urlpatterns = [ ...
+url(r’^first_app/’,include(‘first_app.urls’)),
+
+--To call the application urls from project add below line to urls.py of projects urls.py file.
+
+from django.conf.urls import include
+
+--to the urlpatterns list add below line. 
+
+url(r'^DjangoExerciseApp/', include('DjangoExerciseApp.urls'))
+
+--DjangoExerciseApp in regular expression  can be renamed to anything that makes sense. 
+
+
+--Now create urls.py file inside the app folder
+from django.conf.urls import url
+from DjangoExerciseApp import views
+
+urlpatterns = [
+    url(r'^$',views.index1,name='index1'),
+]
+
+--Add the index1 function in app's views.py file. 
+
+def index1(request):
+    return HttpResponse("<em>My app homepage</em>")
+	
+---Working on Templates
+
+--Add the templates folder into the top level project folder
+--Then change the project settings.py file and put below line to point to the templates directory
+TEMPLATE_DIR = os.path.join(BASE_DIR,"templates")
+
+--GO TO the DIRECTORIES section of the settings.py file. 
+
+'DIRS': [TEMPLATE_DIR],
+
+--Go to the app directory
+
+--Create urls.py file and paste below code
+from django.conf.urls import url
+from helpapp import views
+
+urlpatterns=[
+    url(r'^$',views.funchelpapp,name="funchelpapp"),
+	
+--Go to projects urls.py file and add below pattern
+
+urlpatterns = [
+    url(r'^$', include('DjangoExerciseApp.urls')),
+    url(r'^helpapp/', include('helpapp.urls')),
+	]
+	
+--Go to Templates directory and create one more directory 
+helpapp
+
+--Create a filed called index.html file in this directory /templates/helpapp/index.html
+
+Use the {{}} for tempate variables. 
+
+--Go to helpapp folder and open views.py file and put below code
+
+from django.shortcuts import render
+from django.http import HttpResponse
+
+
+# Create your views here.
+def funchelpapp(request):
+    dictHelp = {
+        "help_by_django":"Django is helping me running website",
+    }
+    return render(request,'helpapp/index.html',context=dictHelp)
+	
+--run the server
+pythong manage.py runserver
+
+Point the browser to 127.0.0.1:8000/helpapp
+
+This should show the helpapp/index.html content in the webpage. 
